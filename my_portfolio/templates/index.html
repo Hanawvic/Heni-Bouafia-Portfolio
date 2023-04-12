@@ -1,0 +1,745 @@
+{% extends 'base.html' %}
+
+
+{% block title %} Heni iPORTFOLIO {% endblock %}
+
+{% block content %}
+<!-- ======= Hero Section ======= -->
+<section id="hero" class="d-flex flex-column justify-content-center align-items-center">
+  <div class="hero-container" data-aos="fade-in">
+    <h1>Heni Bouafia</h1>
+    <p>I'm <span class="typed" data-typed-items="Energy & Utilities Engineer, Developer, Freelancer, Project Engineer"></span></p>
+  </div>
+</section><!-- End Hero -->
+
+<main id="main">
+
+  <!-- ======= About Section ======= -->
+  <section id="about" class="about">
+    <div class="container">
+
+      <div class="section-title">
+        <h2>About</h2>
+        <p>Welcome to my portfolio website! I'm Heni (or Hanaw, if you prefer), and I'm thrilled to have you here.
+          By day, I'm an energy engineer, but outside of work, you can catch me gaming (Dota 2 is a favorite)
+          or cheering on FC Barcelona. As a skilled Python developer, I specialize in using Flask and Django
+          to build web applications, web scraping, and data analysis.
+          If you have a personal website or web app idea in mind, don't hesitate to reach out to me.
+          Let's work together to bring your vision to life!.</p>
+      </div>
+
+      <div class="row">
+        <div class="col-lg-4" data-aos="fade-right">
+          <img src="{{ url_for('static', filename='assets/img/profile-img.jpg') }}" class="img-fluid" alt="">
+        </div>
+        <div class="col-lg-8 pt-4 pt-lg-0 content" data-aos="fade-left">
+          <h3>Energy / Utilities Engineer &amp; Web Developer.</h3>
+          <p class="fst-italic">
+            If you're interested in discussing a job opportunity, a freelance project, or just want to say hello, I'd love to hear from you. You can reach me by email or phone using the details provided below. I look forward to connecting with you!            </p>
+          <div class="row">
+            <div class="col-lg-6">
+              <ul>
+                <li><i class="bi bi-chevron-right"></i> <strong>Birthday:</strong> <span>31 July 1987</span></li>
+                <li><i class="bi bi-chevron-right"></i> <strong>Website:</strong> <span><a href="https://hanw-personal-blog.onrender.com/">My Personal Blog</a></span></li>
+                <li><i class="bi bi-chevron-right"></i> <strong>Phone:</strong> <span>+216 54 649 249</span></li>
+                <li><i class="bi bi-chevron-right"></i> <strong>City:</strong> <span>Tunis, Tunisia</span></li>
+              </ul>
+            </div>
+            <div class="col-lg-6">
+              <ul>
+                <li><i class="bi bi-chevron-right"></i> <strong>Age:</strong> <span>{{ year - date_of_birth }}</span></li>
+                <li><i class="bi bi-chevron-right"></i> <strong>Degree:</strong> <span>Energy Engineering</span></li>
+                <li><i class="bi bi-chevron-right"></i> <strong>Email:</strong> <span>bouafia.heni@gmail.com</span></li>
+                <li><i class="bi bi-chevron-right"></i> <strong>Freelance:</strong> <span>Available</span></li>
+              </ul>
+            </div>
+          </div>
+          <p>
+            Don't hesitate to get in touch if you'd like to discuss a potential collaboration or have any questions about my experience or skills.
+            My contact information is listed here <a href="#contact">Contact</a>, and I'll do my best to respond as soon as possible. Thank you for your interest!</p>          </div>
+      </div>
+
+    </div>
+  </section><!-- End About Section -->
+
+
+
+  <!-- ======= Skills Section ======= -->
+  <section id="skills" class="skills section-bg">
+    <div class="container">
+
+      <div class="section-title">
+        <h2>Skills</h2>
+        <p> I would like to highlight some of the key skills and expertise that I have developed over the years.
+          As an energy engineer with a passion for programming, I possess a unique combination of technical and analytical skills,
+          as well as a strong ability to think critically and solve problems. Additionally, my experience in building
+          websites using Python frameworks like Flask and Django has honed my skills in web development, web scraping,
+          and data analysis. I look forward to using these skills to help bring your ideas to life.</p>
+      </div>
+
+      <div class="row skills-content">
+
+        <div class="col-lg-6" data-aos="fade-up">
+
+          <div class="progress">
+            <span class="skill">HTML <i class="val">100%</i></span>
+            <div class="progress-bar-wrap">
+              <div class="progress-bar" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+          </div>
+
+          <div class="progress">
+            <span class="skill">CSS <i class="val">90%</i></span>
+            <div class="progress-bar-wrap">
+              <div class="progress-bar" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+          </div>
+
+          <div class="progress">
+            <span class="skill">JavaScript <i class="val">75%</i></span>
+            <div class="progress-bar-wrap">
+              <div class="progress-bar" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+          </div>
+            <div class="progress">
+            <span class="skill">ISO 50001 <i class="val">100%</i></span>
+            <div class="progress-bar-wrap">
+              <div class="progress-bar" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+          </div>
+
+          <div class="progress">
+            <span class="skill">PROJECT MANAGEMENT <i class="val">75%</i></span>
+            <div class="progress-bar-wrap">
+              <div class="progress-bar" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+          </div>
+
+          <div class="progress">
+            <span class="skill">TPM <i class="val">75%</i></span>
+            <div class="progress-bar-wrap">
+              <div class="progress-bar" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
+
+          <div class="progress">
+            <span class="skill">PYTHON <i class="val">80%</i></span>
+            <div class="progress-bar-wrap">
+              <div class="progress-bar" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+          </div>
+
+          <div class="progress">
+            <span class="skill">FLASK <i class="val">90%</i></span>
+            <div class="progress-bar-wrap">
+              <div class="progress-bar" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+          </div>
+
+          <div class="progress">
+            <span class="skill">DJANGO <i class="val">75%</i></span>
+            <div class="progress-bar-wrap">
+              <div class="progress-bar" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+          </div>
+
+          <div class="progress">
+            <span class="skill">REVIT<i class="val">70%</i></span>
+            <div class="progress-bar-wrap">
+              <div class="progress-bar" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+          </div>
+
+          <div class="progress">
+            <span class="skill">ASPEN PLUS<i class="val">90%</i></span>
+            <div class="progress-bar-wrap">
+              <div class="progress-bar" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+          </div>
+
+          <div class="progress">
+            <span class="skill">AUTOCAD <i class="val">90%</i></span>
+            <div class="progress-bar-wrap">
+              <div class="progress-bar" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section><!-- End Skills Section -->
+
+  <!-- ======= Resume Section ======= -->
+  <section id="resume" class="resume">
+    <div class="container">
+
+      <div class="section-title">
+        <h2>Resume</h2>
+        <p>
+          Welcome to my resume! Here you'll find a glimpse into my career as an Energy and Utilities Project Engineer.
+          I'm passionate about the work that I do and am always striving to improve my skills and expertise.
+          As you browse through my portfolio, I hope that you'll gain a better understanding of my career journey and
+          the projects that I've been involved in. Thank you for taking the time to learn more about me and my work.
+        </p>
+      </div>
+      <!--Summary-->
+      <div class="row">
+        <div class="col-lg-6" data-aos="fade-up">
+          <h3 class="resume-title">Summary</h3>
+          <div class="resume-item pb-0">
+            <h4>Heni Bouafia</h4>
+            <p><em> Energy and Utilities Project Engineer with over 10 years of experience in industrial utility projects,
+              offering extensive expertise in complex audits and improving energy efficiency by 20%.
+              In-depth knowledge of engineering standards ISO50001 through the development of energy-saving programs.
+              Seeking a senior position where I can leverage my project management skills.</em></p>
+            <ul>
+              <li>Tunis, Tunisie</li>
+              <li>(+216) 54 649 249</li>
+              <li>bouafia.heni@gmail.com</li>
+            </ul>
+          </div>
+           <!--Education-->
+          <h3 class="resume-title">Education</h3>
+          <div class="resume-item">
+            <h4>Bachelor's degree in Energy and Environmental Engineering</h4>
+            <h5>2009 - 2012</h5>
+            <p><em>ENIM: National School of Engineering in Monastir</em></p>
+            <p>
+              Through this program, I gained knowledge in thermodynamics, industrial refrigeration, energy management systems,
+              fluid mechanics, and energy production, including power plants such as thermal, electric and biomass.
+              This education has provided me with a strong foundation to excel in my career as an Energy and
+              Utilities Project Engineer.
+            </p>
+          </div>
+          <div class="resume-item">
+            <h4>Preparatory Program: Mathematics and Physics</h4>
+            <h5>2006 - 2009</h5>
+            <p><em>IPEIN: Preparatory Institute for Engineering Studies in Nabeul</em></p>
+            <p>
+              This program provided intensive courses in mathematics, physics, chemistry, mechanics, and programming,
+              giving me a strong foundation in these key areas.
+            </p>
+          </div>
+          <div class="resume-item">
+            <h4>High School Diploma in Mathematics</h4>
+            <h5>2006</h5>
+            <p><em>Monji Slim High School</em></p>
+            <p>
+             I hold a High School Diploma in Mathematics from Monji Slim High School. I graduated with honors, receiving
+              a "mention très bien." This education provided me with a strong foundation in mathematics
+              and analytical thinking, which has been invaluable in my career as an Energy and Utilities Project Engineer.
+            </p>
+          </div>
+          <!--Languages-->
+          <h3 class="resume-title">Languages</h3>
+          <div class="section-title">
+          <p>Fluent in French, Professional in English, Advanced notions in German, Native Arabic.</p>
+          </div>
+          <div class="resume-item">
+            <h4>French: <span class="gold-star"> &#9733;&#9733;&#9733;&#9733;&#9733; </span></h4>
+          </div>
+           <div class="resume-item">
+            <h4>English: <span class="gold-star"> &#9733;&#9733;&#9733;&#9733;</span></h4>
+          </div>
+           <div class="resume-item">
+            <h4>Arab: <span class="gold-star"> &#9733;&#9733;&#9733;&#9733;&#9733;</span></h4>
+          </div>
+           <div class="resume-item">
+            <h4>German: <span class="gold-star">&#9733;&#9733;</span></h4>
+          </div>
+          <!--Certifications-->
+          <h3 class="resume-title">Certifications</h3>
+          <div class="resume-item">
+            <h4><i class="fas fa-certificate"></i>   Project Management </h4>
+            <h5>04/2022</h5>
+            <p><em>LinkedIn E-learning</em></p>
+          </div>
+          <div class="resume-item">
+            <h4><i class="fas fa-certificate"></i>   Steam and Condensate Technology </h4>
+            <h5>03/2019</h5>
+            <p><em>TLV Euro Engineering France SARL</em></p>
+          </div>
+          <div class="resume-item">
+            <h4><i class="fas fa-certificate"></i>  Microsoft Project </h4>
+            <h5>05/2018</h5>
+            <p><em>LinkedIn E-learning</em></p>
+          </div>
+          <div class="resume-item">
+            <h4><i class="fas fa-certificate"></i>  First Line Management- Heineken </h4>
+            <h5>04/2016</h5>
+            <p><em>Heineken</em></p>
+          </div>
+          <div class="resume-item">
+            <h4><i class="fas fa-certificate"></i>  100 Days of Code: The Complete Python Pro Bootcamp by Dr.Angela Yu</h4>
+            <h5>04/2022</h5>
+            <p><em>Udemy</em></p>
+          </div>
+          <div class="resume-item">
+            <h4><i class="fas fa-certificate"></i>  Python Django: The practical guide</h4>
+            <h5>03/2023</h5>
+            <p><em>Udemy</em></p>
+          </div>
+          <!--Courses-->
+          <h3 class="resume-title">Courses</h3>
+          <div class="resume-item">
+            <h4><i class="fas fa-chalkboard"></i> Total Productive Maintenance-TPM</h4>
+            <h5>SONOBRA GROUP-HEINEKEN</h5>
+          </div>
+          <div class="resume-item">
+            <h4><i class="fas fa-chalkboard"></i> ISO 50001: Energy systems management</h4>
+            <h5>MOULIN D'OR</h5>
+          </div>
+          <!--Interests-->
+          <h3 class="resume-title">Interests</h3>
+          <div class="resume-item">
+            <ul>
+              <li>Programming</li>
+              <li>Gaming</li>
+              <li>Volunteering</li>
+            </ul>
+          </div>
+          <!--Driver license-->
+          <h3 class="resume-title">Driver's License</h3>
+          <div class="resume-item">
+            <p><i class="fas fa-id-card"></i>  Category B</p>
+          </div>
+
+        </div>
+
+        <!--Professional Experience-->
+        <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
+          <h3 class="resume-title">Professional Experience</h3>
+          <div class="resume-item">
+            <h4>Energy and Utilities Expert</h4>
+            <h5>2020 - Present</h5>
+            <p><em>RMI - Réalisation et Maintenance Industrielle - Rades, Tunisia</em></p>
+            <ul>
+              <li>
+                Technical Sales Engineer for TLV, a leading steam equipment company in Tunisia. Generated customer leads
+                and provided technical solutions in the field of steam and condensate systems (with TLV certification).
+                Successfully increased the customer base by 23% through targeted commercial campaigns.
+              </li>
+              <li>
+                 Optimized utility networks in the agro-food and pharmaceutical industries, managing the project from
+                start to finish. Improved energy efficiency by 20% in a cardboard manufacturing plant by implementing
+                a new steam and condensate system.
+              </li>
+              <li>
+                Reduced maintenance costs by 12% for an agro-food industry client by conducting an audit of the
+                steam and condensate network (through an installation audit program and condensate trap survey).
+              </li>
+              <li>
+                Coached clients on utilities (Clean & Black Utilities) and trained them on new products such as traps,
+                pumps, and valves. Identified opportunities for process improvements, cost reductions, and energy savings,
+                leading to successful project outcomes.
+              </li>
+            </ul>
+          </div>
+          <div class="resume-item">
+            <h4>Energy Department Manager</h4>
+            <h5>2018 - 2020</h5>
+            <p><em>CTMI-TN: Tunisian Industrial Maintenance Company - Tunis, Tunisia</em></p>
+            <ul>
+              <li>Increased productivity by 10% in a resin manufacturing industry by auditing the existing thermal installation and implementing a new steam circuit</li>
+              <li>Successfully led a team of 5 technicians to repair and install valves in the petrochemical industry.</li>
+              <li>Trained clients (junior engineers) on best practices for industrial utilities: steam, compressed air, and industrial refrigeration.</li>
+              <li>Established a new activity in the department: water treatment for industries (RO, PW, WFI, etc.).</li>
+                <li>Successfully managed projects with a budget between 100K and 500K.</li>
+            </ul>
+          </div>
+          <div class="resume-item">
+            <h4>Energy and Utilities Manager</h4>
+            <h5>2016 - 2018</h5>
+            <p><em>SOPACO: MOULIN D'OR - Djbel Ouest, Tunisia</em></p>
+            <ul>
+              <li>Global Utilities Project Engineer (clean and grey utilities): participated in the establishment of the new SOPACO (Moulin d'Or) factory.</li>
+              <li>Drafted and implemented all necessary utility department documents: inputted data into Coswin 8i software.</li>
+              <li>Established and implemented ISO 50001 standard: Built KPIs, established performance monitoring dashboards, and identified performance improvement opportunities.</li>
+              <li>Negotiated prices and fees with subcontractors, reducing maintenance costs by 15% while ensuring continuity and improved services (PAC, boilers, compressors, pumps, VEV).</li>
+              <li>Organized and conducted preventive maintenance of utilities (clean & black) in coordination with the team: implemented necessary documents.</li>
+            </ul>
+          </div>
+          <div class="resume-item">
+            <h4> First line manager Energy and Utilities </h4>
+            <h5>2015 - 2016</h5>
+            <p><em>SNBG-SONOBRA Group / HEINEKEN - Grombalia, Tunisia</em></p>
+            <ul>
+              <li>Reduced the factory's electricity consumption by 5% through optimizing the performance of chilled water groups.</li>
+              <li>Eliminated minor stops in aseptic lines due to compressed air quality issues, and improved productivity by 15% through advanced KAIZEN techniques, such as improving the compressed air loop.</li>
+              <li>Established and implemented the ISO 50001 standard: Improved the thermal ratio (KPI) by 25% over four months by recovering all factory condensates.</li>
+              <li>Reduced the microbial load of process water by 80% by implementing a UV system in the reverse osmosis section.</li>
+            </ul>
+          </div>
+          <div class="resume-item">
+            <h4>Thermal Design Engineer</h4>
+            <h5>2012 - 2015</h5>
+            <p><em>G.A.T Energy / Nesma Industries - Tunis, Tunisia</em></p>
+            <ul>
+              <li>Successfully simulated an absorption machine (LiBr/water) using ASPEN Plus software.</li>
+              <li>Participated in the design of a kettle type heat exchanger: thermal design and conducted all thermodynamic studies and energy balances.</li>
+              <li>Successfully installed a vacuum sensor on an absorption machine: changed the heat source of the boiler that previously operated on natural gas.</li>
+            </ul>
+          </div>
+          <div class="resume-item">
+            <h4>intern study engineer</h4>
+            <h5>2012</h5>
+            <p><em>G.A.T Energy / Nesma Industries - Tunis, Tunisia</em></p>
+            <ul>
+              <li>Conducted a final project study and designed the thermal aspects of a single-effect water/LiBr absorption machine.</li>
+              <li>Modeled the thermodynamics of the machine and performed a full numerical simulation of the machine using Aspen Plus software.</li>
+              <li>Designed the heat exchangers' thermal aspects.</li>
+            </ul>
+          </div>
+          <div class="resume-item">
+            <h4>Intern Technician</h4>
+            <h5>07/2011- 09/2011</h5>
+            <p><em>S.E.T.E.C Water Treatment and Air Conditioning Company - Nabeul, Tunisia</em></p>
+            <ul>
+              <li>Performed heating and air conditioning assessment of a villa.</li>
+              <li>Installed air conditioning equipment at the ELDORADO hotel in Yasmine Hamammet, Tunisia.</li>
+            </ul>
+          </div>
+
+
+        </div>
+      </div>
+
+    </div>
+  </section><!-- End Resume Section -->
+
+  <!-- ======= Portfolio Section ======= -->
+  <section id="portfolio" class="portfolio section-bg">
+    <div class="container">
+
+      <div class="section-title">
+        <h2>Portfolio</h2>
+        <p>
+          Welcome to my portfolio! Here you can find a collection of projects I've had the opportunity to work on,
+          showcasing my skills and expertise in various areas. From designing and simulating thermal systems to managing
+          projects and implementing energy efficiency strategies, each project presented here highlights my dedication to
+          delivering high-quality work and exceeding expectations. I invite you to browse through my portfolio and learn more
+          about my professional journey.
+        </p>
+      </div>
+
+      <div class="row" data-aos="fade-up">
+        <div class="col-lg-12 d-flex justify-content-center">
+          <ul id="portfolio-flters">
+            <li data-filter="*" class="filter-active">All</li>
+            <li data-filter=".filter-app">Energy & Utilities</li>
+            <li data-filter=".filter-card">Data science</li>
+            <li data-filter=".filter-web">Web development</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="row portfolio-container" data-aos="fade-up" data-aos-delay="100">
+
+        <div class="col-lg-4 col-md-6 portfolio-item filter-app">
+          <div class="portfolio-wrap">
+            <img src="{{ url_for('static', filename='assets/img/portfolio/portfolio-1.jpg') }}" class="img-fluid" alt="">
+            <div class="portfolio-links">
+              <a href="{{ url_for('static', filename='assets/img/portfolio/portfolio-1.jpg') }}" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Audit Installation Chemistry"><i class="bx bx-plus"></i></a>
+              <a href="{{ url_for('pages.portfolio_details', i=1) }}" title="More Details"><i class="bx bx-link"></i></a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-4 col-md-6 portfolio-item filter-web">
+          <div class="portfolio-wrap">
+            <img src="{{ url_for('static', filename='assets/img/portfolio/portfolio-2.jpg') }}" class="img-fluid" alt="">
+            <div class="portfolio-links">
+              <a href="{{ url_for('static', filename='assets/img/portfolio/portfolio-2.jpg') }}" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Personal Blog"><i class="bx bx-plus"></i></a>
+              <a href="{{ url_for('pages.portfolio_details', i=2) }}" title="More Details"><i class="bx bx-link"></i></a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-4 col-md-6 portfolio-item filter-app">
+          <div class="portfolio-wrap">
+            <img src="{{ url_for('static', filename='assets/img/portfolio/portfolio-3.jpg') }}" class="img-fluid" alt="">
+            <div class="portfolio-links">
+              <a href="{{ url_for('static', filename='assets/img/portfolio/portfolio-3.jpg') }}" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Audit Installation Cardboard"><i class="bx bx-plus"></i></a>
+              <a href="{{ url_for('pages.portfolio_details', i=3) }}" title="More Details"><i class="bx bx-link"></i></a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-4 col-md-6 portfolio-item filter-app">
+          <div class="portfolio-wrap">
+            <img src="{{ url_for('static', filename='assets/img/portfolio/portfolio-4.jpg') }}" class="img-fluid" alt="">
+            <div class="portfolio-links">
+              <a href="{{ url_for('static', filename='assets/img/portfolio/portfolio-4.jpg') }}" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Audit Installation food industry"><i class="bx bx-plus"></i></a>
+              <a href="{{ url_for('pages.portfolio_details', i=4) }}" title="More Details"><i class="bx bx-link"></i></a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-4 col-md-6 portfolio-item filter-web">
+          <div class="portfolio-wrap">
+            <img src="{{ url_for('static', filename='assets/img/portfolio/portfolio-5.jpg') }}" class="img-fluid" alt="">
+            <div class="portfolio-links">
+              <a href="{{ url_for('static', filename='assets/img/portfolio/portfolio-5.jpg') }}" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Company website"><i class="bx bx-plus"></i></a>
+              <a href="{{ url_for('pages.portfolio_details', i=5) }}" title="More Details"><i class="bx bx-link"></i></a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-4 col-md-6 portfolio-item filter-app">
+          <div class="portfolio-wrap">
+            <img src="{{ url_for('static', filename='assets/img/portfolio/portfolio-6.jpg') }}" class="img-fluid" alt="">
+            <div class="portfolio-links">
+              <a href="{{ url_for('static', filename='assets/img/portfolio/portfolio-6.jpg') }}" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Audit Installation Livestock feed industry"><i class="bx bx-plus"></i></a>
+              <a href="{{ url_for('pages.portfolio_details', i=6) }}" title="More Details"><i class="bx bx-link"></i></a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-4 col-md-6 portfolio-item filter-card">
+          <div class="portfolio-wrap">
+            <img src="{{ url_for('static', filename='assets/img/portfolio/portfolio-7.jpg') }}" class="img-fluid" alt="">
+            <div class="portfolio-links">
+              <a href="{{ url_for('static', filename='assets/img/portfolio/portfolio-7.jpg') }}" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Web Scraping steam traps models"><i class="bx bx-plus"></i></a>
+              <a href="{{ url_for('pages.portfolio_details', i=7) }}" title="More Details"><i class="bx bx-link"></i></a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-4 col-md-6 portfolio-item filter-web">
+          <div class="portfolio-wrap">
+            <img src="{{ url_for('static', filename='assets/img/portfolio/portfolio-8.jpg') }}" class="img-fluid" alt="">
+            <div class="portfolio-links">
+              <a href="{{ url_for('static', filename='assets/img/portfolio/portfolio-8.jpg') }}" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Habit Tracker App"><i class="bx bx-plus"></i></a>
+              <a href="{{ url_for('pages.portfolio_details', i=8) }}" title="More Details"><i class="bx bx-link"></i></a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-4 col-md-6 portfolio-item filter-app">
+          <div class="portfolio-wrap">
+            <img src="{{ url_for('static', filename='assets/img/portfolio/portfolio-9.jpg') }}" class="img-fluid" alt="">
+            <div class="portfolio-links">
+              <a href="{{ url_for('static', filename='assets/img/portfolio/portfolio-9.jpg') }}" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Audit Installation food industry"><i class="bx bx-plus"></i></a>
+              <a href="{{ url_for('pages.portfolio_details', i=9) }}" title="More Details"><i class="bx bx-link"></i></a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section><!-- End Portfolio Section -->
+
+  <!-- ======= Services Section ======= -->
+  <section id="services" class="services">
+    <div class="container">
+
+      <div class="section-title">
+        <h2>Services</h2>
+        <p>Welcome to my services section! Here, I offer a range of professional services that are tailored to meet your specific needs. With my expertise and experience, I am confident that I can provide you with high-quality solutions that are designed to help you achieve your goals. Whether you need help with web development, energy management, or any other related services, I am here to help you every step of the way.</p>
+      </div>
+
+      <div class="row">
+        <div class="col-lg-4 col-md-6 icon-box" data-aos="fade-up">
+          <div class="icon"><i class="bi bi-code-slash"></i></div>
+          <h4 class="title"><a href="#services">Freelance</a></h4>
+          <p class="description">With my expertise in web development, I can design and develop modern, responsive websites using HTML, CSS, JavaScript, and various frameworks such as Bootstrap, Flask and Django.</p>
+        </div>
+        <div class="col-lg-4 col-md-6 icon-box" data-aos="fade-up" data-aos-delay="100">
+          <div class="icon"><i class="bi bi-brightness-high"></i></div>
+          <h4 class="title"><a href="#services">Energy & Utilities</a></h4>
+          <p class="description">I have experience in industrial auditing, where I can analyze and optimize various processes to increase efficiency, reduce energy consumption, and improve overall productivity.</p>
+        </div>
+        <div class="col-lg-4 col-md-6 icon-box" data-aos="fade-up" data-aos-delay="200">
+          <div class="icon"><i class="bi bi-diagram-2"></i></div>
+          <h4 class="title"><a href="#services">Web Scraping</a></h4>
+          <p class="description">With my knowledge in data analysis and web scraping, I can provide customized solutions for data collection, analysis, and visualization using Python, Selenium, and Beautiful Soup.</p>
+        </div>
+        <div class="col-lg-4 col-md-6 icon-box" data-aos="fade-up" data-aos-delay="300">
+          <div class="icon"><i class="bi bi-calendar-check"></i> </div>
+          <h4 class="title"><a href="#services">Project Management</a></h4>
+          <p class="description">I have experience in project management in the energy field, including the establishment of the ISO 50001 standard for energy management systems.</p>
+        </div>
+        <div class="col-lg-4 col-md-6 icon-box" data-aos="fade-up" data-aos-delay="400">
+          <div class="icon"><i class="bi bi-bag-check"></i></div>
+          <h4 class="title"><a href="#services">Technical Sales</a></h4>
+          <p class="description">I can work in a company as a technical sales representative in the field of industrial utilities to develop a client portfolio.</p>
+        </div>
+        <div class="col-lg-4 col-md-6 icon-box" data-aos="fade-up" data-aos-delay="500">
+          <div class="icon"><i class="bi bi-vector-pen"></i></div>
+          <h4 class="title"><a href="#services">Simulation</a></h4>
+          <p class="description">I can perform studies of certain processes such as heat exchangers using complex softwares such as ASPEN Suite, and I can create drawings using AutoCAD.</p>
+        </div>
+      </div>
+
+    </div>
+  </section><!-- End Services Section -->
+
+  <!-- ======= Testimonials Section ======= -->
+  <section id="testimonials" class="testimonials section-bg">
+    <div class="container">
+
+      <div class="section-title">
+        <h2>Testimonials</h2>
+        <p>The Testimonials section of my portfolio website includes feedback and comments from clients and colleagues I have worked with in the past. These testimonials highlight their experiences working with me and provide insight into the quality of work I provide.</p>
+      </div>
+
+      <div class="testimonials-slider swiper" data-aos="fade-up" data-aos-delay="100">
+        <div class="swiper-wrapper">
+
+          <div class="swiper-slide">
+            <div class="testimonial-item" data-aos="fade-up">
+              <p>
+                <i class="bx bxs-quote-alt-left quote-icon-left"></i>
+                Heni is a serious and talented person. His work quality is truly unique, he helped me a lot in establishing my company RMI.
+                <i class="bx bxs-quote-alt-right quote-icon-right"></i>
+              </p>
+              <img src="{{ url_for('static', filename='assets/img/testimonials/testimonials-1.jpg') }}" class="testimonial-img" alt="">
+              <h3>Nadia Amrouni</h3>
+              <h4>Ceo &amp; Founder</h4>
+            </div>
+          </div><!-- End testimonial item -->
+
+          <div class="swiper-slide">
+            <div class="testimonial-item" data-aos="fade-up" data-aos-delay="100">
+              <p>
+                <i class="bx bxs-quote-alt-left quote-icon-left"></i>
+                My colleagues and I are completely convinced of his professionalism and his ability to manage projects in order to bring them to a successful conclusion, which he has already demonstrated to us several times. I think he would make a good addition to any company, due to his seriousness, involvement, and behavior.
+                <i class="bx bxs-quote-alt-right quote-icon-right"></i>
+              </p>
+              <img src="{{ url_for('static', filename='assets/img/testimonials/testimonials-2.jpg') }}" class="testimonial-img" alt="">
+              <h3>Ilyas Feguir</h3>
+              <h4>Technical Manager</h4>
+            </div>
+          </div><!-- End testimonial item -->
+
+          <div class="swiper-slide">
+            <div class="testimonial-item" data-aos="fade-up" data-aos-delay="200">
+              <p>
+                <i class="bx bxs-quote-alt-left quote-icon-left"></i>
+                 Heni has been a great help to us and has always been responsive to our requests. We have enjoyed working with him on industrial utility optimization projects. The quality of service is truly impeccable. Heni has the power to solve problems and has tremendous technical potential.
+                <i class="bx bxs-quote-alt-right quote-icon-right"></i>
+              </p>
+              <img src="{{ url_for('static', filename='assets/img/testimonials/testimonials-3.jpg') }}" class="testimonial-img" alt="">
+              <h3>Haithem Aouini</h3>
+              <h4>Utilities Manager</h4>
+            </div>
+          </div><!-- End testimonial item -->
+
+          <div class="swiper-slide">
+            <div class="testimonial-item" data-aos="fade-up" data-aos-delay="300">
+              <p>
+                <i class="bx bxs-quote-alt-left quote-icon-left"></i>
+                He is versatile and capable of solving technical and commercial problems. Our industrial clients are always satisfied with his service.
+                <i class="bx bxs-quote-alt-right quote-icon-right"></i>
+              </p>
+              <img src="{{ url_for('static', filename='assets/img/testimonials/testimonials-4.jpg') }}" class="testimonial-img" alt="">
+              <h3>Anis Selmi</h3>
+              <h4>Head of Industrial Utilities</h4>
+            </div>
+          </div><!-- End testimonial item -->
+
+          <div class="swiper-slide">
+            <div class="testimonial-item" data-aos="fade-up" data-aos-delay="400">
+              <p>
+                <i class="bx bxs-quote-alt-left quote-icon-left"></i>
+                I really enjoyed working with him, his ability to simplify problems and solve them is really great.                <i class="bx bxs-quote-alt-right quote-icon-right"></i>
+              </p>
+              <img src="{{ url_for('static', filename='assets/img/testimonials/testimonials-5.jpg') }}" class="testimonial-img" alt="">
+              <h3>Arbi Boukhari</h3>
+              <h4>Production manager</h4>
+            </div>
+          </div><!-- End testimonial item -->
+
+        </div>
+        <div class="swiper-pagination"></div>
+      </div>
+
+    </div>
+  </section><!-- End Testimonials Section -->
+
+  <!-- ======= Contact Section ======= -->
+  <section id="contact" class="contact">
+    <div class="container">
+
+      <div class="section-title">
+        <h2>Contact</h2>
+        <p>Want to get in touch? Fill out the form below to send me a message and I will get back to you as soon as possible!</p>
+      </div>
+
+      <div class="row" data-aos="fade-in">
+
+        <div class="col-lg-5 d-flex align-items-stretch">
+          <div class="info">
+            <div class="address">
+              <i class="bi bi-geo-alt"></i>
+              <h4>Location:</h4>
+              <p>Tunis, Tunisia</p>
+            </div>
+
+            <div class="email">
+              <i class="bi bi-envelope"></i>
+              <h4>Email:</h4>
+              <p>bouafia.heni@gmail.com</p>
+            </div>
+
+            <div class="phone">
+              <i class="bi bi-phone"></i>
+              <h4>Call:</h4>
+              <p>+216 54 649 249</p>
+            </div>
+
+            <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d1596.6692457564636!2d10.199055!3d36.8343686!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12fd35d230f4da65%3A0xe1370ed5a25726f!2sR%C3%A9sidence%20essada%201!5e0!3m2!1sfr!2stn!4v1680480627760!5m2!1sfr!2stn" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>            </div>
+
+        </div>
+
+        <div class="col-lg-7 mt-5 mt-lg-0 d-flex align-items-stretch">
+          <form action="{{ url_for('pages.contact') }}" class="flask-email-form" method="post" role="form" >
+            <div class="row">
+              <div class="form-group col-md-6">
+                <label for="name">Your Name</label>
+                <input type="text" name="name" class="form-control" id="name" required>
+              </div>
+              <div class="form-group col-md-6">
+                <label for="name">Your Email</label>
+                <input type="email" class="form-control" name="email" id="email" required>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="name">Subject</label>
+              <input type="text" class="form-control" name="subject" id="subject" required>
+            </div>
+            <div class="form-group">
+              <label for="name">Message</label>
+              <textarea class="form-control" name="message" rows="10" required></textarea>
+            </div>
+
+                <div class="my-3">
+                <div class="loading">Loading</div>
+                <div class="error-message"></div>
+                <div class="sent-message">Your message has been sent. Thank you!</div>
+              </div>
+            <div class="g-recaptcha" data-sitekey="{{ recaptcha_site_key }}"></div> <br/>
+            <div class="text-center"><button type="submit">Send Message</button></div>
+
+
+          </form>
+        </div>
+
+      </div>
+
+    </div>
+  </section><!-- End Contact Section -->
+
+</main><!-- End #main -->
+
+
+{% endblock %}
+
+
+
+
