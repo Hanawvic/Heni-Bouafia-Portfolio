@@ -8,7 +8,6 @@ instance/*
 .env
 .idea
 html to pdf.py
-requirements.txt
 files
 ### Flask.Python Stack ###
 # Byte-compiled / optimized / DLL files
