@@ -56,7 +56,7 @@
                 <li><strong>Client</strong>: {{ project['client'] }}</li>
                 <li><strong>Project date</strong>: {{ project['date'] }}</li>
                 {% if project.url %}
-               <li><strong>Project URL</strong>: <a href="{{ project['url'] }}">{{ project['url_name'] }}</a></li>
+               <li><strong>Project URL</strong>: <a href="{{ project['url'] }}" target="blank">{{ project['url_name'] }}</a></li>
                 {% endif %}
               </ul>
             </div>
