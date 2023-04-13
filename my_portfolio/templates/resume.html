@@ -13,7 +13,7 @@
 
   <!-- Favicons -->
   <link href="{{ url_for('static', filename='assets/img/faviconheni.png') }}" rel="icon">
-  <link href="{{ url_for('static', filename='assets/img/apple-touch-icon.png') }}" rel="apple-touch-icon">
+  <link href="{{ url_for('static', filename='assets/img/faviconheni.png') }}" rel="apple-touch-icon">
 
 
   <!-- Google Fonts -->
@@ -30,19 +30,56 @@
 
   <!-- Template Main CSS File -->
   <link href="{{ url_for('static', filename='assets/css/style.css') }}" rel="stylesheet">
+       <!-- Bootstrap CSS -->
+            {{ bootstrap.load_css() }}
 
 </head>
 <body>
+
+ <!-- Navigation -->
+<div class="container">
+ <nav class="navbar fixed-top navbar-expand-lg bg-body-tertiary" style="background-color: #CFD8DC;" id="mainNav">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="{{ url_for('pages.index') }}">Heni Bouafia</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarScroll">
+      <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="{{ url_for('pages.index') }}">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{{ url_for('pages.index') }}#about">About</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="{{ url_for('pages.index') }}#portfolio">Portfolio</a>
+        </li>
+         <li class="nav-item">
+          <a class="nav-link" href="{{ url_for('pages.index') }}#contact">Contact</a>
+        </li>
+      </ul>
+      <form class="d-flex">
+        <button class="btn btn-sm btn-outline-success me-2" type="button"><a class="nav-link" href="{{ url_for('pages.download_en_resume') }}" target="blanck">Download English</a></button>
+        <button class="btn btn-sm btn-outline-primary" type="button"><a class="nav-link" href="{{ url_for('pages.download') }}" target="blanck">Download French</a></button>
+      </form>
+    </div>
+  </div>
+</nav>
+</div>
+
+
+
+<br>
+ <br>
+
 <!-- ======= Resume Section ======= -->
   <section id="resume" class="resume">
     <div class="container">
 
       <div class="profile">
         <img src="{{ url_for('static', filename='assets/img/profile-img.jpg') }}" alt="" class="img-fluid rounded-circle" style="width:15%;">
-      </div>
-      <div class="container text-center add">
-        <a href="{{ url_for('pages.download_en_resume') }}"  class="button" target="_blank">Download English</a>
-        <a href="{{ url_for('pages.download') }}"  class="button" target="_blank">Télécharger Français</a>
       </div>
       <div class="section-title">
         <h2>Resume</h2>
@@ -281,6 +318,7 @@
 
     </div>
   </section><!-- End Resume Section -->
+
  <!-- Vendor JS Files -->
   <script src="{{ url_for('static', filename='assets/vendor/purecounter/purecounter_vanilla.js') }}"></script>
   <script src="{{ url_for('static', filename='assets/vendor/aos/aos.js') }}"></script>
@@ -291,9 +329,10 @@
   <script src="{{ url_for('static', filename='assets/vendor/typed.js/typed.min.js') }}"></script>
   <script src="{{ url_for('static', filename='assets/vendor/waypoints/noframework.waypoints.js') }}"></script>
   <script src="{{ url_for('static', filename='assets/vendor/flask-email-form/validate.js') }}"></script>
-
-
+   <script src="{{ url_for('static', filename='assets/vendor/jquery/jquery.min.js')}}"></script>
+  <script src="{{ url_for('static', filename='assets/js/clean-resume.min.js')}}"></script>
   <!-- Template Main JS File -->
   <script src="{{ url_for('static', filename='assets/js/main.js') }}"></script>
+
 </body>
 </html>
