@@ -99,7 +99,7 @@ projects = [
         "category": "RESTFUL API Web Application",
         "img1": "assets/img/portfolio/portfolio-2-1.jpg",
         "img2": "assets/img/portfolio/portfolio-2-2.jpg",
-        "img3": "assets/img/portfolio/portfolio-3-3.jpg",
+        "img3": "assets/img/portfolio/portfolio-2-3.jpg",
         "client": "Heni Bouafia",
         "date": "20 Mars, 2023",
         "url": "https://hanw-personal-blog.onrender.com/",
