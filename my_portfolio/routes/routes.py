@@ -116,5 +116,3 @@ def contact():
             print(str(e))
             return jsonify({"success": False, "errors": ["An error occurred while sending the message. Please try "
                                                          "again later."]}), 404
-
-

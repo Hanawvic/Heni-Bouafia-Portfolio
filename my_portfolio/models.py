@@ -12,5 +12,5 @@ class Visitor:
         return {
             '_id': self.id,
             'message': self.message,
-            'timestamp': self.timestamp
+            'timestamp': self.timestamp.strftime('%Y-%m-%d %H:%M:%S')
         }
