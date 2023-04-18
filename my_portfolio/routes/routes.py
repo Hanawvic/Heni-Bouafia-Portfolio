@@ -1,13 +1,13 @@
 from datetime import datetime
 import requests
-from flask import Blueprint, render_template, request, jsonify, abort, send_from_directory
+from flask import Blueprint, render_template, request, jsonify, abort, send_from_directory, current_app
 from flask.cli import load_dotenv
 from flask_mail import Mail, Message
 from my_portfolio import mongo
 from my_portfolio.config import Config
 from my_portfolio.projects.projects import projects
 from my_portfolio.models import Visitor
-
+from safeproxy import SaferProxyFix
 
 pages = Blueprint("pages", __name__, template_folder="templates", static_folder="static")
 
@@ -15,6 +15,8 @@ current_year = datetime.now().year
 
 load_dotenv()
 mail = Mail()
+
+current_app.wsgi_app = SaferProxyFix(current_app.wsgi_app)
 
 
 @pages.context_processor
@@ -26,17 +28,20 @@ def inject_current_year():
 
 @pages.route("/")
 def index():
-    ip_address = request.headers.get('X-Forwarded-For', request.remote_addr)
+    if not request.headers.getlist("X-Forwarded-For"):
+        ip_address = request.remote_addr
+    else:
+        ip_address = request.headers.getlist("X-Forwarded-For")[0]
+
     # ip_address = "41.227.76.44"
-    response = requests.get(f'http://ip-api.com/json/{ip_address}')
+    response = requests.get(f'http://api.ipstack.com/{ip_address}?access_key={Config.ACCESS_KEY}')
     data = response.json()
-    country = data['country']
-    isp = data['isp']
+    country = data['country_name']
     city = data['city']
     message = f"A person with {ip_address} from {city}-{country} has visited your website."
 
     # Create a new Visitor object and insert it into the database
-    visitor = Visitor(ip_address=ip_address, city=city, country=country, internet_provider=isp, message=message)
+    visitor = Visitor(ip_address=ip_address, city=city, country=country, message=message)
     # Sending mail notification
     subject = "Someone has Consulted your home website"
     msg = Message(subject, recipients=[Config.MAIL_USERNAME])
@@ -66,17 +71,20 @@ def resume():
 @pages.route('/resume/Heni Bouafia-fr')
 def download():
     """ download the resume from the directory"""
-    ip_address = request.headers.get('X-Forwarded-For', request.remote_addr)
+    if not request.headers.getlist("X-Forwarded-For"):
+        ip_address = request.remote_addr
+    else:
+        ip_address = request.headers.getlist("X-Forwarded-For")[0]
+
     # ip_address = "41.227.76.44"
-    response = requests.get(f'http://ip-api.com/json/{ip_address}')
+    response = requests.get(f'http://api.ipstack.com/{ip_address}?access_key={Config.ACCESS_KEY}')
     data = response.json()
-    country = data['country']
-    isp = data['isp']
+    country = data['country_name']
     city = data['city']
     message = f"A person with {ip_address} from {city}-{country} has Downloaded french resume"
 
     # Create a new Visitor object and insert it into the database
-    visitor = Visitor(ip_address=ip_address, city=city, country=country, internet_provider=isp, message=message)
+    visitor = Visitor(ip_address=ip_address, city=city, country=country, message=message)
     # Sending mail notification
     subject = "Someone has Consulted your French resume"
     msg = Message(subject, recipients=[Config.MAIL_USERNAME])
@@ -92,17 +100,20 @@ def download():
 @pages.route('/resume/download-en')
 def download_en_resume():
     """ download the resume from the directory"""
-    ip_address = request.headers.get('X-Forwarded-For', request.remote_addr)
+    if not request.headers.getlist("X-Forwarded-For"):
+        ip_address = request.remote_addr
+    else:
+        ip_address = request.headers.getlist("X-Forwarded-For")[0]
+
     # ip_address = "41.227.76.44"
-    response = requests.get(f'http://ip-api.com/json/{ip_address}')
+    response = requests.get(f'http://api.ipstack.com/{ip_address}?access_key={Config.ACCESS_KEY}')
     data = response.json()
-    country = data['country']
-    isp = data['isp']
+    country = data['country_name']
     city = data['city']
     message = f"A person with {ip_address} from {city}-{country} has Downloaded English resume"
 
     # Create a new Visitor object and insert it into the database
-    visitor = Visitor(ip_address=ip_address, city=city, country=country, internet_provider=isp, message=message)
+    visitor = Visitor(ip_address=ip_address, city=city, country=country, message=message)
     # Sending mail notification
     subject = "Someone has Consulted your English resume"
     msg = Message(subject, recipients=[Config.MAIL_USERNAME])
@@ -123,17 +134,20 @@ def contact():
         subject = request.form.get("subject")
         message_body = request.form.get("message")
 
-        ip_address = request.headers.get('X-Forwarded-For', request.remote_addr)
+        if not request.headers.getlist("X-Forwarded-For"):
+            ip_address = request.remote_addr
+        else:
+            ip_address = request.headers.getlist("X-Forwarded-For")[0]
+
         # ip_address = "41.227.76.44"
-        response = requests.get(f'http://ip-api.com/json/{ip_address}')
+        response = requests.get(f'http://api.ipstack.com/{ip_address}?access_key={Config.ACCESS_KEY}')
         data = response.json()
-        country = data['country']
-        isp = data['isp']
+        country = data['country_name']
         city = data['city']
         message = f"A person with {ip_address} from {city}-{country} has sent you a message!"
 
         # Create a new Visitor object and insert it into the database
-        visitor = Visitor(ip_address=ip_address, city=city, country=country, internet_provider=isp, message=message)
+        visitor = Visitor(ip_address=ip_address, city=city, country=country, message=message)
 
         # Sending mail notification
         msg = Message(subject, recipients=[Config.MAIL_USERNAME])
@@ -147,5 +161,3 @@ def contact():
             print(str(e))
             return jsonify({"success": False, "errors": ["An error occurred while sending the message. Please try "
                                                          "again later."]}), 404
-
-
