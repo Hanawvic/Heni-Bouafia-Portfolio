@@ -1,7 +1,5 @@
 from flask import Flask
 from flask_bootstrap import Bootstrap5
-from flask_migrate import Migrate
-from flask_sqlalchemy import SQLAlchemy
 from flask.cli import load_dotenv
 from my_portfolio.config import Config
 from flask_pymongo import PyMongo
