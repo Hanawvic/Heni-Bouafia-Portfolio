@@ -1,9 +1,0 @@
-{
-    "app_id": "heni-portfolio-ktxcc",
-    "config_version": 20210101,
-    "name": "Heni-Portfolio",
-    "location": "IE",
-    "provider_region": "aws-eu-west-2",
-    "deployment_model": "LOCAL",
-    "environment": "production"
-}
