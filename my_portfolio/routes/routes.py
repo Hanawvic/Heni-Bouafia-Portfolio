@@ -1,13 +1,11 @@
 from datetime import datetime
-
-from flask import Blueprint, render_template, request, jsonify, abort, send_from_directory
+from flask import Blueprint, render_template, request, jsonify, abort, send_from_directory, current_app
 from flask.cli import load_dotenv
 from flask_mail import Mail, Message
-
-from my_portfolio import mongo
 from my_portfolio.config import Config
 from my_portfolio.models import Visitor
 from my_portfolio.projects.projects import projects
+
 
 pages = Blueprint("pages", __name__, template_folder="templates", static_folder="static")
 
@@ -35,8 +33,9 @@ def index():
     msg.body = f"Subject: New Message: {message}!"
     try:
         mail.send(msg)
+
         visitor = Visitor(message=message)
-        mongo.db.visitors.insert_one(visitor.to_dict())
+        current_app.db.visitors.insert_one(visitor.to_dict())
 
     except Exception as e:
         print(str(e))
@@ -67,9 +66,10 @@ def download():
     msg = Message(subject, recipients=[Config.MAIL_USERNAME])
     msg.body = f"Subject: New Message: {message}!"
     visitor = Visitor(message=message)
-    mongo.db.visitors.insert_one(visitor.to_dict())
+    current_app.db.visitors.insert_one(visitor.to_dict())
     try:
         mail.send(msg)
+
         return send_from_directory(directory="static", path="files/Resume-Heni Bouafia-fr.pdf", as_attachment=False)
     except Exception as e:
         return str(e)
@@ -86,7 +86,7 @@ def download_en_resume():
     msg = Message(subject, recipients=[Config.MAIL_USERNAME])
     msg.body = f"Subject: New Message: {message}!"
     visitor = Visitor(message=message)
-    mongo.db.visitors.insert_one(visitor.to_dict())
+    current_app.db.visitors.insert_one(visitor.to_dict())
     try:
         mail.send(msg)
 
@@ -109,7 +109,7 @@ def contact():
         msg = Message(subject, recipients=[Config.MAIL_USERNAME])
         msg.body = f"Subject: New Message: {message}!\n\nName: {name}\nEmail: {email}\nMessage: {message_body}"
         visitor = Visitor(message=message)
-        mongo.db.visitors.insert_one(visitor.to_dict())
+        current_app.db.visitors.insert_one(visitor.to_dict())
         try:
             mail.send(msg)
             return jsonify({"success": True}), 200
