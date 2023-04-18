@@ -70,7 +70,6 @@ def download():
     mongo.db.visitors.insert_one(visitor.to_dict())
     try:
         mail.send(msg)
-
         return send_from_directory(directory="static", path="files/Resume-Heni Bouafia-fr.pdf", as_attachment=False)
     except Exception as e:
         return str(e)

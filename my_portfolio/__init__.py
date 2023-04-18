@@ -24,15 +24,15 @@ def create_app(config_class=Config):
 
     #  wrap the code that is causing the error in a with app.app_context():
     # LOAD the default db from the URI
-    with app.app_context():
+    # with app.app_context():
         # app.db = db
-        mongo.init_app(app)
-        from my_portfolio.errors.handlers import errors
-        from my_portfolio.routes.routes import pages, mail
 
-        # initialize the app with the extension mail
-        mail.init_app(app)
-        app.register_blueprint(pages)
-        app.register_blueprint(errors)
+    from my_portfolio.errors.handlers import errors
+    from my_portfolio.routes.routes import pages, mail
+    mongo.init_app(app)
+    # initialize the app with the extension mail
+    mail.init_app(app)
+    app.register_blueprint(pages)
+    app.register_blueprint(errors)
 
     return app
