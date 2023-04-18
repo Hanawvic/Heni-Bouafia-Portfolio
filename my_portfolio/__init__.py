@@ -1,9 +1,8 @@
 from flask import Flask
-from flask_bootstrap import Bootstrap5
 from flask.cli import load_dotenv
-from pymongo import MongoClient
+from flask_bootstrap import Bootstrap5
+from flask_pymongo import PyMongo
 from my_portfolio.config import Config
-
 
 # from flask_pymongo import PyMongo
 
@@ -11,9 +10,11 @@ bootstrap = Bootstrap5()
 
 load_dotenv()
 
-# mongo = PyMongo()
-client = MongoClient(Config.MONGO_URI)
-db = client.portfolio_visitors
+mongo = PyMongo()
+
+
+# client = MongoClient(Config.MONGO_URI)
+# db = client.portfolio_visitors
 
 
 def create_app(config_class=Config):
@@ -22,11 +23,10 @@ def create_app(config_class=Config):
     bootstrap.init_app(app)
 
     #  wrap the code that is causing the error in a with app.app_context():
-    # with app.app_context():
-
     # LOAD the default db from the URI
     with app.app_context():
-        app.db = db
+        # app.db = db
+        mongo.init_app(app)
         from my_portfolio.errors.handlers import errors
         from my_portfolio.routes.routes import pages, mail
 
