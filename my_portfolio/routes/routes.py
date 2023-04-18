@@ -32,8 +32,9 @@ def index():
     msg.body = f"Subject: New Message: {message}!"
     try:
         mail.send(msg)
-        visitor = Visitor(message=message)
-        current_app.db.visitors.insert_one(visitor.to_dict())
+        with current_app.app_context():
+            visitor = Visitor(message=message)
+            current_app.db.visitors.insert_one(visitor.to_dict())
 
     except Exception as e:
         print(str(e))
@@ -63,10 +64,11 @@ def download():
     subject = "Someone has Consulted your French resume"
     msg = Message(subject, recipients=[Config.MAIL_USERNAME])
     msg.body = f"Subject: New Message: {message}!"
+    visitor = Visitor(message=message)
+    current_app.db.visitors.insert_one(visitor.to_dict())
     try:
         mail.send(msg)
-        visitor = Visitor(message=message)
-        current_app.db.visitors.insert_one(visitor.to_dict())
+
         return send_from_directory(directory="static", path="files/Resume-Heni Bouafia-fr.pdf", as_attachment=False)
     except Exception as e:
         return str(e)
@@ -82,10 +84,11 @@ def download_en_resume():
     subject = "Someone has Consulted your English resume"
     msg = Message(subject, recipients=[Config.MAIL_USERNAME])
     msg.body = f"Subject: New Message: {message}!"
+    visitor = Visitor(message=message)
+    current_app.db.visitors.insert_one(visitor.to_dict())
     try:
         mail.send(msg)
-        visitor = Visitor(message=message)
-        current_app.db.visitors.insert_one(visitor.to_dict())
+
         return send_from_directory(directory="static", path="files/Resume-Heni Bouafia-en.pdf", as_attachment=False)
     except Exception as e:
         return str(e)
@@ -104,11 +107,10 @@ def contact():
         # Sending mail notification
         msg = Message(subject, recipients=[Config.MAIL_USERNAME])
         msg.body = f"Subject: New Message: {message}!\n\nName: {name}\nEmail: {email}\nMessage: {message_body}"
-
+        visitor = Visitor(message=message)
+        current_app.db.visitors.insert_one(visitor.to_dict())
         try:
             mail.send(msg)
-            visitor = Visitor(message=message)
-            current_app.db.visitors.insert_one(visitor.to_dict())
             return jsonify({"success": True}), 200
         except Exception as e:
             print(str(e))
