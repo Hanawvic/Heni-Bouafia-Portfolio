@@ -1,3 +1,7 @@
 {
-    "enabled": false
+    "enabled": true,
+    "mongo_service_name": "mongodb-atlas",
+    "database_name": "trackvisitors",
+    "collection_name": "visitors",
+    "user_id_field": "1"
 }
