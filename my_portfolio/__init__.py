@@ -17,8 +17,7 @@ def create_app(config_class=Config):
 
     #  wrap the code that is causing the error in a with app.app_context():
     with app.app_context():
-        # create database tables
-        # db.create_all()
+
         mongo.init_app(app)
         from my_portfolio.errors.handlers import errors
         from my_portfolio.routes.routes import pages, mail
