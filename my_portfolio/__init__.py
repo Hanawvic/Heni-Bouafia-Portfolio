@@ -8,10 +8,6 @@ bootstrap = Bootstrap5()
 
 load_dotenv()
 mongo = PyMongo()
-# create the extension
-# db = SQLAlchemy()
-# Create db migration
-# migrate = Migrate()
 
 
 def create_app(config_class=Config):
