@@ -3,11 +3,11 @@ import requests
 from flask import Blueprint, render_template, request, jsonify, abort, send_from_directory, current_app
 from flask.cli import load_dotenv
 from flask_mail import Mail, Message
+from werkzeug.middleware.proxy_fix import ProxyFix
 from my_portfolio import mongo
 from my_portfolio.config import Config
 from my_portfolio.projects.projects import projects
 from my_portfolio.models import Visitor
-from safeproxy import SaferProxyFix
 
 pages = Blueprint("pages", __name__, template_folder="templates", static_folder="static")
 
@@ -16,7 +16,7 @@ current_year = datetime.now().year
 load_dotenv()
 mail = Mail()
 
-current_app.wsgi_app = SaferProxyFix(current_app.wsgi_app)
+current_app.wsgi_app = ProxyFix(current_app.wsgi_app, x_for=1, x_proto=1, x_host=1)
 
 
 @pages.context_processor
@@ -28,22 +28,24 @@ def inject_current_year():
 
 @pages.route("/")
 def index():
-    if not request.headers.getlist("X-Forwarded-For"):
-        ip_address = request.remote_addr
-    else:
-        ip_address = request.headers.getlist("X-Forwarded-For")[0]
-
+    ip_address = request.remote_addr
     # ip_address = "41.227.76.44"
-    response = requests.get(f'http://api.ipstack.com/{ip_address}?access_key={Config.ACCESS_KEY}')
-    data = response.json()
-    country = data['country_name']
-    city = data['city']
-    message = f"A person with {ip_address} from {city}-{country} has visited your website."
+    try:
+        response = requests.get(f'http://api.ipstack.com/{ip_address}?access_key={Config.ACCESS_KEY}')
+        data = response.json()
+        country = data['country_name']
+        city = data['city']
+        message = f"A person with {ip_address} from {city}-{country} has visited your website."
+    except Exception as e:
+        print(f"Error tracking IP address: {str(e)}")
+        country = "Unknown"
+        city = "Unknown"
+        message = f"A person with IP address {ip_address} has visited your website, but their location could not be determined."
 
     # Create a new Visitor object and insert it into the database
     visitor = Visitor(ip_address=ip_address, city=city, country=country, message=message)
     # Sending mail notification
-    subject = "Someone has Consulted your home website"
+    subject = "Someone has consulted your home website"
     msg = Message(subject, recipients=[Config.MAIL_USERNAME])
     msg.body = f"Subject: New Message: {message}!"
     try:
@@ -71,10 +73,7 @@ def resume():
 @pages.route('/resume/Heni Bouafia-fr')
 def download():
     """ download the resume from the directory"""
-    if not request.headers.getlist("X-Forwarded-For"):
-        ip_address = request.remote_addr
-    else:
-        ip_address = request.headers.getlist("X-Forwarded-For")[0]
+    ip_address = request.remote_addr
 
     # ip_address = "41.227.76.44"
     response = requests.get(f'http://api.ipstack.com/{ip_address}?access_key={Config.ACCESS_KEY}')
@@ -83,47 +82,46 @@ def download():
     city = data['city']
     message = f"A person with {ip_address} from {city}-{country} has Downloaded french resume"
 
-    # Create a new Visitor object and insert it into the database
-    visitor = Visitor(ip_address=ip_address, city=city, country=country, message=message)
-    # Sending mail notification
-    subject = "Someone has Consulted your French resume"
-    msg = Message(subject, recipients=[Config.MAIL_USERNAME])
-    msg.body = f"Subject: New Message: {message}!"
     try:
+        # Create a new Visitor object and insert it into the database
+        visitor = Visitor(ip_address=ip_address, city=city, country=country, message=message)
+        # Sending mail notification
+        subject = "Someone has Consulted your French resume"
+        msg = Message(subject, recipients=[Config.MAIL_USERNAME])
+        msg.body = f"Subject: New Message: {message}!"
         mail.send(msg)
         mongo.db.visitors.insert_one(visitor.to_dict())
-        return send_from_directory(directory="static", path="files/Resume-Heni Bouafia-fr.pdf", as_attachment=False)
     except Exception as e:
-        return str(e)
+        print(str(e))
+
+    return send_from_directory(directory="static", path="files/Resume-Heni Bouafia-fr.pdf", as_attachment=False)
 
 
 @pages.route('/resume/download-en')
 def download_en_resume():
     """ download the resume from the directory"""
-    if not request.headers.getlist("X-Forwarded-For"):
-        ip_address = request.remote_addr
-    else:
-        ip_address = request.headers.getlist("X-Forwarded-For")[0]
+    ip_address = request.remote_addr
 
     # ip_address = "41.227.76.44"
     response = requests.get(f'http://api.ipstack.com/{ip_address}?access_key={Config.ACCESS_KEY}')
     data = response.json()
     country = data['country_name']
     city = data['city']
-    message = f"A person with {ip_address} from {city}-{country} has Downloaded English resume"
+    message = f"A person with {ip_address} from {city}-{country} has Downloaded french resume"
 
-    # Create a new Visitor object and insert it into the database
-    visitor = Visitor(ip_address=ip_address, city=city, country=country, message=message)
-    # Sending mail notification
-    subject = "Someone has Consulted your English resume"
-    msg = Message(subject, recipients=[Config.MAIL_USERNAME])
-    msg.body = f"Subject: New Message: {message}!"
     try:
+        # Create a new Visitor object and insert it into the database
+        visitor = Visitor(ip_address=ip_address, city=city, country=country, message=message)
+        # Sending mail notification
+        subject = "Someone has Consulted your English resume"
+        msg = Message(subject, recipients=[Config.MAIL_USERNAME])
+        msg.body = f"Subject: New Message: {message}!"
         mail.send(msg)
         mongo.db.visitors.insert_one(visitor.to_dict())
-        return send_from_directory(directory="static", path="files/Resume-Heni Bouafia-en.pdf", as_attachment=False)
     except Exception as e:
-        return str(e)
+        print(str(e))
+
+    return send_from_directory(directory="static", path="files/Resume-Heni Bouafia-en.pdf", as_attachment=False)
 
 
 @pages.route("/contact/", methods=["GET", "POST"])
@@ -134,17 +132,19 @@ def contact():
         subject = request.form.get("subject")
         message_body = request.form.get("message")
 
-        if not request.headers.getlist("X-Forwarded-For"):
-            ip_address = request.remote_addr
-        else:
-            ip_address = request.headers.getlist("X-Forwarded-For")[0]
+        ip_address = request.remote_addr
 
-        # ip_address = "41.227.76.44"
-        response = requests.get(f'http://api.ipstack.com/{ip_address}?access_key={Config.ACCESS_KEY}')
-        data = response.json()
-        country = data['country_name']
-        city = data['city']
-        message = f"A person with {ip_address} from {city}-{country} has sent you a message!"
+        try:
+            response = requests.get(f'http://api.ipstack.com/{ip_address}?access_key={Config.ACCESS_KEY}')
+            data = response.json()
+            country = data['country_name']
+            city = data['city']
+            message = f"A person with {ip_address} from {city}-{country} has sent you a message!"
+        except Exception as e:
+            print(str(e))
+            country = None
+            city = None
+            message = f"A person with {ip_address} has sent you a message, but their location could not be determined."
 
         # Create a new Visitor object and insert it into the database
         visitor = Visitor(ip_address=ip_address, city=city, country=country, message=message)
@@ -161,3 +161,4 @@ def contact():
             print(str(e))
             return jsonify({"success": False, "errors": ["An error occurred while sending the message. Please try "
                                                          "again later."]}), 404
+
