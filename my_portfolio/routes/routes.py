@@ -26,7 +26,7 @@ def inject_current_year():
 
 @pages.route("/")
 def index():
-    ip_address = request.remote_addr
+    ip_address = request.headers.get('X-Forwarded-For', request.remote_addr)
     # ip_address = "41.227.76.44"
     response = requests.get(f'http://ip-api.com/json/{ip_address}')
     data = response.json()
@@ -66,7 +66,7 @@ def resume():
 @pages.route('/resume/Heni Bouafia-fr')
 def download():
     """ download the resume from the directory"""
-    ip_address = request.remote_addr
+    ip_address = request.headers.get('X-Forwarded-For', request.remote_addr)
     # ip_address = "41.227.76.44"
     response = requests.get(f'http://ip-api.com/json/{ip_address}')
     data = response.json()
@@ -92,7 +92,7 @@ def download():
 @pages.route('/resume/download-en')
 def download_en_resume():
     """ download the resume from the directory"""
-    ip_address = request.remote_addr
+    ip_address = request.headers.get('X-Forwarded-For', request.remote_addr)
     # ip_address = "41.227.76.44"
     response = requests.get(f'http://ip-api.com/json/{ip_address}')
     data = response.json()
@@ -123,7 +123,7 @@ def contact():
         subject = request.form.get("subject")
         message_body = request.form.get("message")
 
-        ip_address = request.remote_addr
+        ip_address = request.headers.get('X-Forwarded-For', request.remote_addr)
         # ip_address = "41.227.76.44"
         response = requests.get(f'http://ip-api.com/json/{ip_address}')
         data = response.json()
