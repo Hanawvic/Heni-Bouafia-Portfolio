@@ -28,9 +28,10 @@ def inject_current_year():
 
 @pages.route("/")
 def index():
-    ip_address = request.remote_addr
+
     # ip_address = "41.227.76.44"
     try:
+        ip_address = request.remote_addr
         response = requests.get(f'http://api.ipstack.com/{ip_address}?access_key={Config.ACCESS_KEY}')
         data = response.json()
         country = data['country_name']
@@ -40,7 +41,8 @@ def index():
         print(f"Error tracking IP address: {str(e)}")
         country = "Unknown"
         city = "Unknown"
-        message = f"A person with IP address {ip_address} has visited your website, but their location could not be determined."
+        message = f"A person with IP address {ip_address} has visited your website, but their location could not be " \
+                  f"determined."
 
     # Create a new Visitor object and insert it into the database
     visitor = Visitor(ip_address=ip_address, city=city, country=country, message=message)
@@ -73,16 +75,16 @@ def resume():
 @pages.route('/resume/Heni Bouafia-fr')
 def download():
     """ download the resume from the directory"""
-    ip_address = request.remote_addr
-
-    # ip_address = "41.227.76.44"
-    response = requests.get(f'http://api.ipstack.com/{ip_address}?access_key={Config.ACCESS_KEY}')
-    data = response.json()
-    country = data['country_name']
-    city = data['city']
-    message = f"A person with {ip_address} from {city}-{country} has Downloaded french resume"
-
     try:
+        ip_address = request.remote_addr
+
+        # ip_address = "41.227.76.44"
+        response = requests.get(f'http://api.ipstack.com/{ip_address}?access_key={Config.ACCESS_KEY}')
+        data = response.json()
+        country = data['country_name']
+        city = data['city']
+        message = f"A person with {ip_address} from {city}-{country} has Downloaded french resume"
+
         # Create a new Visitor object and insert it into the database
         visitor = Visitor(ip_address=ip_address, city=city, country=country, message=message)
         # Sending mail notification
@@ -100,16 +102,16 @@ def download():
 @pages.route('/resume/download-en')
 def download_en_resume():
     """ download the resume from the directory"""
-    ip_address = request.remote_addr
-
-    # ip_address = "41.227.76.44"
-    response = requests.get(f'http://api.ipstack.com/{ip_address}?access_key={Config.ACCESS_KEY}')
-    data = response.json()
-    country = data['country_name']
-    city = data['city']
-    message = f"A person with {ip_address} from {city}-{country} has Downloaded french resume"
-
     try:
+        ip_address = request.remote_addr
+
+        # ip_address = "41.227.76.44"
+        response = requests.get(f'http://api.ipstack.com/{ip_address}?access_key={Config.ACCESS_KEY}')
+        data = response.json()
+        country = data['country_name']
+        city = data['city']
+        message = f"A person with {ip_address} from {city}-{country} has Downloaded french resume"
+
         # Create a new Visitor object and insert it into the database
         visitor = Visitor(ip_address=ip_address, city=city, country=country, message=message)
         # Sending mail notification
@@ -132,9 +134,8 @@ def contact():
         subject = request.form.get("subject")
         message_body = request.form.get("message")
 
-        ip_address = request.remote_addr
-
         try:
+            ip_address = request.remote_addr
             response = requests.get(f'http://api.ipstack.com/{ip_address}?access_key={Config.ACCESS_KEY}')
             data = response.json()
             country = data['country_name']
@@ -161,4 +162,3 @@ def contact():
             print(str(e))
             return jsonify({"success": False, "errors": ["An error occurred while sending the message. Please try "
                                                          "again later."]}), 404
-
