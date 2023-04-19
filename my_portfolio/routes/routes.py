@@ -121,7 +121,7 @@ def contact():
 @pages.route(f"{Config.ADMIN_URL}", methods=["GET", "POST"])
 def admin_interface():
     page = int(request.args.get('page', 1))
-    per_page = 5
+    per_page = 15
     offset = (page - 1) * per_page
     total_visitors = current_app.db.visitors.count_documents({})
     num_pages = (total_visitors + per_page - 1) // per_page
