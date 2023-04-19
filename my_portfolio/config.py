@@ -15,3 +15,4 @@ class Config:
     RECAPTCHA_PUBLIC_KEY = os.environ.get("RECAPTCHA_PUBLIC_KEY")
     RECAPTCHA_PRIVATE_KEY = os.environ.get("RECAPTCHA_PRIVATE_KEY")
     ACCESS_KEY = os.environ.get("ACCESS_KEY")
+    ADMIN_URL = os.environ.get("ADMIN_URL")

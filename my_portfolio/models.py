@@ -14,3 +14,5 @@ class Visitor:
             'message': self.message,
             'timestamp': self.timestamp.strftime('%d-%b-%Y at %H:%M:%S')
         }
+
+

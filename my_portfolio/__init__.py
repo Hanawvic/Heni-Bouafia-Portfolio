@@ -4,7 +4,6 @@ from flask.cli import load_dotenv
 from pymongo import MongoClient
 from my_portfolio.config import Config
 
-
 # from flask_pymongo import PyMongo
 
 bootstrap = Bootstrap5()
@@ -32,6 +31,7 @@ def create_app(config_class=Config):
 
         # initialize the app with the extension mail
         mail.init_app(app)
+
         app.register_blueprint(pages)
         app.register_blueprint(errors)
 

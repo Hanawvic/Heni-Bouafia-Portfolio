@@ -1,11 +1,11 @@
 from datetime import datetime
-from flask import Blueprint, render_template, request, jsonify, abort, send_from_directory, current_app
+from flask import Blueprint, render_template, request, jsonify, abort, send_from_directory, current_app, flash, \
+    redirect, url_for
 from flask.cli import load_dotenv
 from flask_mail import Mail, Message
 from my_portfolio.config import Config
 from my_portfolio.models import Visitor
 from my_portfolio.projects.projects import projects
-
 
 pages = Blueprint("pages", __name__, template_folder="templates", static_folder="static")
 
@@ -24,7 +24,6 @@ def inject_current_year():
 
 @pages.route("/")
 def index():
-
     message = f"A person has visited your website."
 
     # Sending mail notification
@@ -117,3 +116,21 @@ def contact():
             print(str(e))
             return jsonify({"success": False, "errors": ["An error occurred while sending the message. Please try "
                                                          "again later."]}), 404
+
+
+@pages.route(f"{Config.ADMIN_URL}", methods=["GET", "POST"])
+def admin_interface():
+    page = int(request.args.get('page', 1))
+    per_page = 5
+    offset = (page - 1) * per_page
+    total_visitors = current_app.db.visitors.count_documents({})
+    num_pages = (total_visitors + per_page - 1) // per_page
+    visitors = current_app.db.visitors.find().sort("timestamp", -1).skip(offset).limit(per_page)
+    return render_template("admin.html", visitors=visitors, page=page, num_pages=num_pages)
+
+
+@pages.route(f"{Config.ADMIN_URL}/delete-visitor/<identity>", methods=["GET", "POST"])
+def delete_visitor(identity):
+    current_app.db.visitors.delete_one({"_id": identity})
+    flash("Visitor deleted successfully", "success")
+    return redirect(url_for("pages.admin_interface"))
