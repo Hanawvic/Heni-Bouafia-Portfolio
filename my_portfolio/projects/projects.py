@@ -143,7 +143,7 @@ projects = [
         "description": DESCRIPTION_6,
     },
     {
-        "category": "Audit of Steam and Condensate Installation",
+        "category": "Web Scraping",
         "img1": "assets/img/portfolio/portfolio-7-1.jpg",
         "img2": "assets/img/portfolio/portfolio-7-2.jpg",
         "img3": "assets/img/portfolio/portfolio-7-3.jpg",
